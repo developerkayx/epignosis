@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'eo9-770duxumu(6wad2mtt5w=p*j!v4dlpn3=^n4#de+s&=gg3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Messages.apps.MessagesConfig',
     'rest_framework',
-    # 'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
