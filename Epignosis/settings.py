@@ -26,7 +26,7 @@ SECRET_KEY = 'eo9-770duxumu(6wad2mtt5w=p*j!v4dlpn3=^n4#de+s&=gg3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["epignosis.herokuapp.com"]
 
 # Application definition
 
