@@ -1,1 +1,1 @@
-web : gunicorn Epignosis.wsgi
+web gunicorn Epignosis.wsgi
