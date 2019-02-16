@@ -3,3 +3,4 @@ djangorestframework==3.9.0
 gunicorn
 django-heroku
 django-rest-swagger
+django-cors-headers
