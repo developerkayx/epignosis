@@ -1,6 +1,8 @@
 from rest_framework import generics
 
 from .serializers import *
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -30,3 +32,11 @@ class PartList(generics.ListAPIView):
         return queryset
 
     serializer_class = PartSerializer
+
+
+def tagged_messages(request):
+    data = []
+    if request.params['tags']:
+        tags = request.params['tags'].split(',')
+
+        for i in tags:

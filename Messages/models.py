@@ -28,6 +28,7 @@ class Message(models.Model):
     size = models.DecimalField(decimal_places=2, max_digits=9)  # the file size of a @Message
     location = models.URLField()  # the URI of a @Message
     is_single = models.BooleanField()  # the type of a @Message (single -> True or part of a @Collection -> False)
+    tags = models.models.ManyToManyField(Tag, related_name="messages")
 
     def __str__(self):
         return f"{self.title} by {self.author}"
@@ -46,3 +47,14 @@ class Part(models.Model):
 
     def __str__(self):
         return f"{self.message.title} {self.part_no} by {self.message.author}"
+
+
+class Tag(models.Model):
+    """
+        A @Tag is a particular subject relating a bunch of messages
+    """
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f"{self.name}"
+    
