@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Collection)
 admin.site.register(Message)
 admin.site.register(Part)
+admin.site.register(Tag)

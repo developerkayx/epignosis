@@ -1,5 +1,5 @@
+from django.db.models import QuerySet
 from rest_framework import generics
-
 from .serializers import *
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -35,8 +35,18 @@ class PartList(generics.ListAPIView):
 
 
 def tagged_messages(request):
-    data = []
-    if request.params['tags']:
-        tags = request.params['tags'].split(',')
+    if request.method == 'GET':
+        if'tags' in request.GET:
+            msgs = Message.objects.all()
+            tags = request.GET['tags'].split(',')
 
-        for i in tags:
+            for i in tags:
+                msgs = msgs.filter(tags__name__contains=i)
+
+            data = {'results': list(msgs.values("title", "duration", "author", "time_created", "size", "location", "is_single").distinct())}
+            return JsonResponse(data)
+        else:
+            return JsonResponse({'error': 'you must include the tags as query parameters',})
+    else:
+        return JsonResponse({'error': 'you must send a GET Request'})
+

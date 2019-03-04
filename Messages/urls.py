@@ -9,4 +9,5 @@ urlpatterns = [
     path('collections/<int:pk>/parts/', views.PartList.as_view(), name="part_list"),
     path('messages/<int:pk>', views.MessageDetail.as_view(), name="message_detail"),
     path('messages/', views.MessageList.as_view(), name="message_detail"),
+    path('tags', views.tagged_messages, name='tags'),
 ]
