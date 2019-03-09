@@ -43,8 +43,8 @@ def tagged_messages(request):
             for i in tags:
                 msgs = msgs.filter(tags__name__contains=i)
 
-            data = {'results': list(msgs.values("title", "duration", "author", "time_created", "size", "location", "is_single").distinct())}
-            return JsonResponse(data)
+            data = list(msgs.values("title", "duration", "author", "time_created", "size", "location", "is_single").distinct())
+            return JsonResponse(data, safe=False)
         else:
             return JsonResponse({'error': 'you must include the tags as query parameters',})
     else:
