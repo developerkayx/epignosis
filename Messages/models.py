@@ -39,6 +39,7 @@ class Message(models.Model):
     location = models.URLField()  # the URI of a @Message
     is_single = models.BooleanField()  # the type of a @Message (single -> True or part of a @Collection -> False)
     tags = models.ManyToManyField(Tag, related_name="messages")
+    thumbnail_url = models.URLField()
 
     def __str__(self):
         return f"{self.title} by {self.author}"
