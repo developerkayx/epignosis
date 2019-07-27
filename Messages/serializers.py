@@ -5,6 +5,7 @@ from .models import *
 
 # Define your Serializers here
 class MessageSerializer(serializers.ModelSerializer):
+    album_name = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Message
         fields = '__all__'
