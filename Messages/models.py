@@ -38,7 +38,7 @@ class Message(models.Model):
     size = models.DecimalField(decimal_places=2, max_digits=9)  # the file size of a @Message
     location = models.URLField()  # the URI of a @Message
     is_single = models.BooleanField()  # the type of a @Message (single -> True or part of a @Collection -> False)
-    tags = models.ManyToManyField(Tag, related_name="messages")
+    tags = models.ManyToManyField(Tag, related_name="messages", null=True)
     thumbnail_url = models.URLField()
 
     def __str__(self):
