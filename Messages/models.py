@@ -12,18 +12,18 @@ class Tag(models.Model):
         return f"{self.name}"
 
 
-class Collection(models.Model):
-    """
-        A @Collection of messages that are parts of a single topic.
-        More like an album of messages.
-        Collections will have an author, time_created and a title
-    """
-    title = models.CharField(max_length=200)  # the title of a @Collection
-    author = models.CharField(max_length=100)  # the author of a @Collection
-    time_created = models.DateField(default=datetime.date.today)  # the time a @Collection was created
+# class Collection(models.Model):
+#     """
+#         A @Collection of messages that are parts of a single topic.
+#         More like an album of messages.
+#         Collections will have an author, time_created and a title
+#     """
+#     title = models.CharField(max_length=200)  # the title of a @Collection
+#     author = models.CharField(max_length=100)  # the author of a @Collection
+#     time_created = models.DateField(default=datetime.date.today)  # the time a @Collection was created
 
-    def __str__(self):
-        return f"{self.title} Collection by {self.author}"
+#     def __str__(self):
+#         return f"{self.title} Collection by {self.author}"
 
 
 class Message(models.Model):
@@ -38,6 +38,8 @@ class Message(models.Model):
     size = models.DecimalField(decimal_places=2, max_digits=9)  # the file size of a @Message
     location = models.URLField()  # the URI of a @Message
     is_single = models.BooleanField()  # the type of a @Message (single -> True or part of a @Collection -> False)
+    album_name = models.CharField("Album Name", max_length=100, default="")
+    download_location = models.URLField(default="http://www.google.com")
     tags = models.ManyToManyField(Tag, related_name="messages", blank=True)
     thumbnail_url = models.URLField()
 
@@ -45,18 +47,18 @@ class Message(models.Model):
         return f"{self.title} by {self.author}"
 
 
-class Part(models.Model):
-    """
-        A @Part is a message that belongs in a collection.
-        Parts will have part_no, collection and message.
-    """
-    part_no = models.IntegerField()  # A Number referring to the @Part of the @Collection
-    collection = models.ForeignKey(
-        Collection, on_delete=models.CASCADE, related_name="parts")  # the @Collection containing this @Part
-    message = models.OneToOneField(
-        Message, on_delete=models.CASCADE, related_name="part")  # the @Message that this @Part is representing
+# class Part(models.Model):
+#     """
+#         A @Part is a message that belongs in a collection.
+#         Parts will have part_no, collection and message.
+#     """
+#     part_no = models.IntegerField()  # A Number referring to the @Part of the @Collection
+#     collection = models.ForeignKey(
+#         Collection, on_delete=models.CASCADE, related_name="parts")  # the @Collection containing this @Part
+#     message = models.OneToOneField(
+#         Message, on_delete=models.CASCADE, related_name="part")  # the @Message that this @Part is representing
 
-    def __str__(self):
-        return f"{self.message.title} {self.part_no} by {self.message.author}"
+#     def __str__(self):
+#         return f"{self.message.title} {self.part_no} by {self.message.author}"
 
     

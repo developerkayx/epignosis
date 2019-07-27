@@ -10,15 +10,15 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PartSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Part
-        fields = '__all__'
+# class PartSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Part
+#         fields = '__all__'
 
 
-class CollectionSerializer(serializers.ModelSerializer):
-    parts = PartSerializer(many=True, read_only=True, required=False)
+# class CollectionSerializer(serializers.ModelSerializer):
+#     parts = PartSerializer(many=True, read_only=True, required=False)
 
-    class Meta:
-        model = Collection
-        fields = '__all__'
+#     class Meta:
+#         model = Collection
+#         fields = '__all__'
